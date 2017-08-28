@@ -1,0 +1,112 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,600,800&subset=latin,cyrillic);
+
+.MyReality {
+  margin: 0;
+}
+
+.Results {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  list-style: none;
+  margin: 2px;
+  padding: 0;
+}
+
+.Result {
+  background: white;
+  border: 1px solid #9E005D;
+  list-style: none;
+  margin: 2px;
+  padding: 10px;
+  flex-grow: 1;
+  min-width: 200px;
+  width: 20%;
+  
+  h2,
+  p,
+  dd,
+  dt {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12pt;
+  }
+  
+  p,
+  b,
+  i {
+    &[aria-hidden=true] {
+      display: none;
+    }
+  }
+  
+  dt {
+    font-size: 10pt;
+  }
+  
+  h2,
+  p,
+  dl,
+  dd,
+  dt {
+    margin: 0;
+  }
+  
+  p,
+  dd {
+    margin-bottom: 10px;
+  }
+  
+  h2 {
+    color: #EB1D78;
+    padding-left: 42px;
+    background-image: url(ok.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 32px 32px;
+    line-height: 32px;
+  }
+  
+  h2,
+  dd:nth-of-type(2) {
+    margin-bottom: 100px;
+  }
+  
+  dt:nth-of-type(1),
+  dt:nth-of-type(2) {
+    display: none;
+  }
+  
+  dd:nth-of-type(1) {
+    font-size: 24pt;
+    font-weight: 600;
+  }
+  
+  dt:nth-of-type(3),
+  dd:nth-of-type(3),
+  dt:nth-of-type(4),
+  dd:nth-of-type(4) {
+    text-align: right;
+  }
+  
+  &[aria-busy=true] {
+    background: linear-gradient(90deg, #EB1D78, #9E005D);
+    border: 1px solid transparent;
+    
+    h2,
+    p,
+    dd,
+    dt {
+      color: white;
+    }
+    
+    h2 {
+      background-image: url(progress.gif);
+    }
+    
+    dt:nth-of-type(4),
+    dd:nth-of-type(4) {
+      display: none;
+    } 
+  }
+}
