@@ -1,8 +1,8 @@
 <?php
-$host = '*****';
-$id = '*****';
-$password = '*****';
-$db = '*****';
+$host = 'localhost';
+$id = 'root';
+$password = 'Secret123!';
+$db = 'expeerify';
 
 $link = mysqli_connect($host, $id, $password, $db);
 
@@ -24,10 +24,9 @@ if (getenv('REQUEST_METHOD') == 'GET') {
         $results[] = $result;
     }
     
-    echo json_encode(
-            array(
-                    'response' => $results
-            ));
+    echo json_encode(array(
+        'response' => $results
+    ));
     
     exit();
 }
@@ -38,13 +37,13 @@ if (getenv('REQUEST_METHOD') == 'POST') {
     
     $resultId = isset($requestData['resultId']) ? $requestData['resultId'] > 0 ? $requestData['resultId'] : false : false;
     $endTime = isset($requestData['endTime']) ? $requestData['endTime'] ==
-             'Jan 1, 1, 12:00:00 AM' ? "null" : "'{$requestData ['endTime']}'" : "null";
+    'Jan 1, 1, 12:00:00 AM' ? "null" : "'{$requestData ['endTime']}'" : "null";
     
     if (isset($requestData)) {
         if ($resultId) {
-            $sql = "UPDATE results 
-                    SET `end` = $endTime, 
-                         is_light_turned_on = {$requestData['isLightTurnedOn']}, 
+            $sql = "UPDATE results
+                    SET `end` = $endTime,
+                         is_light_turned_on = {$requestData['isLightTurnedOn']},
                          tried_open_without_key = {$requestData['triedOpenWithoutKey']}
                     WHERE result_id = {$requestData['resultId']};";
             
@@ -69,9 +68,9 @@ if (getenv('REQUEST_METHOD') == 'POST') {
         $response = mysqli_fetch_assoc($result);
         
         echo json_encode(
-                array(
-                        'response' => $response
-                ));
+            array(
+                'response' => $response
+            ));
         
         exit();
     } else {
@@ -80,9 +79,9 @@ if (getenv('REQUEST_METHOD') == 'POST') {
         $response['message'] = 'Unauthorized.';
         
         echo json_encode(
-                array(
-                        'response' => $response
-                ));
+            array(
+                'response' => $response
+            ));
         
         exit();
     }

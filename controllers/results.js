@@ -1,6 +1,6 @@
 function ResultsManager() {
     var self = this;
-    var api = '/hr/api/results.php';
+    var api = '/expeerify/api/results.php';
     var push;
 
     var $body = $('body');

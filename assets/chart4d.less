@@ -1,0 +1,269 @@
+.Chart-4D {
+  @chart4DSize: 720px;
+  @chart4DPadding: 120px;
+  @chart4DLine: 2px;
+  @chartSquarUnit: 28px;
+
+  width: @chart4DSize + @chart4DPadding * 2;
+  height: @chart4DSize + @chart4DPadding * 2;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: @chart4DSize + @chart4DLine * 2;
+    height: @chart4DSize + @chart4DLine * 2;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(-235deg, #987db4, #735873);
+    display: block;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+
+  h3 {
+    display: none;
+  }
+
+  input {
+    position: absolute;
+    top: 207px;
+    left: 293px;
+    z-index: 3;
+    width: @chartSquarUnit;
+    height: @chartSquarUnit;
+    background: url('target.png');
+    background-size: cover;
+    border: none;
+    margin: 0;
+    padding: 0;
+    color: transparent;
+  }
+
+  dl {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    /**
+     * Axises
+     */
+
+    &:nth-of-type(1) {
+      width: @chart4DSize;
+      height: @chart4DSize;
+      background-image: url('grid.png');
+      background-position: center center;
+      width: 720px;
+      height: 720px;
+      z-index: 2;
+
+      dt {
+        color: #f26a5e;
+        font-weight: bold;
+        height: 60px;
+        line-height: 60px;
+        font-size: 14pt;
+
+        &:nth-of-type(1) {
+          width: 100%;
+          text-align: center;
+          top: -60px;
+        }
+
+        &:nth-of-type(2) {
+          width: auto;
+          text-align: right;
+          left: -80px;
+          top: 50%;
+          transform: translate(0, -50%);
+        }
+
+        &:nth-of-type(3) {
+          width: 100%;
+          text-align: center;
+          bottom: -60px;
+        }
+
+        &:nth-of-type(4) {
+          width: auto;
+          text-align: left;
+          left: ~"calc(100% + 20px)";
+          top: 50%;
+          transform: translate(0, -50%);
+        }
+      }
+
+      &::after,
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        background-color: #f26a5e;
+      }
+
+      &::after { 
+        width: @chart4DLine;
+        height: ~"calc(100% + 4px)";    
+      }
+
+      &::before {
+        content: "";
+        width: ~"calc(100% + 4px)";
+        height: @chart4DLine;
+      }
+    }
+
+    /**
+     * Quadrants
+     */
+
+    &:nth-of-type(2) {
+      width: @chart4DSize;
+      height: @chart4DSize;
+      z-index: 1;
+
+      &::after {
+        content: "";
+        display: block;
+        width: @chart4DSize;
+        height: @chart4DSize;
+        position: absolute;
+        background: linear-gradient(-235deg, #5c4a78, #423043);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        width: 150%;
+        height: 150%;
+        position: absolute;
+        background: radial-gradient(circle, #f26a5e, fade(#f26a5e, 0), fade(#f26a5e, 0));
+        left: -40%;
+        top: -40%;
+        opacity: 0.5;
+        z-index: 2;
+      }
+
+      dt {
+        width: 50%;
+        height: 50%;
+        z-index: 2;
+        font-size: 14pt;
+
+        b {
+          position: absolute;
+          width: @chartSquarUnit;
+          height: @chartSquarUnit;
+          display: block;
+          overflow: hidden;
+          z-index: 1;
+          color: transparent;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  
+        }
+
+        span {
+          position: absolute;
+          display: block;
+          height: @chartSquarUnit;
+          line-height: @chartSquarUnit;
+          z-index: 1;
+          font-weight: bold;
+        }
+
+        &:nth-of-type(1) {
+          background: linear-gradient(-235deg, fade(#5aff9f, 50%), fade(#000, 0));
+          top: 0;
+          left: 0;
+
+          b {
+            top: -@chartSquarUnit / 2;
+            left: -@chartSquarUnit / 2;
+            background: linear-gradient(-235deg, lighten(#5aff9f, 20%), #5aff9f, darken(#5aff9f, 20%));
+          }
+
+          span {
+            text-align: right;
+            top: -@chartSquarUnit / 2;
+            right: ~"calc(100% + @{chartSquarUnit})";
+          }
+        }
+
+        &:nth-of-type(2) {
+          background: linear-gradient(235deg, fade(#1a17ff, 50%), fade(#000, 0));
+          background: none;
+          top: 0;
+          right: 0;
+
+          b {
+            top: -@chartSquarUnit / 2;
+            right: -@chartSquarUnit / 2;
+            background: linear-gradient(-235deg, lighten(#1a17ff, 20%), #1a17ff, darken(#1a17ff, 20%));
+          }
+
+          span {
+            text-align: right;
+            top: -@chartSquarUnit / 2;
+            left: ~"calc(100% + @{chartSquarUnit})";
+          }
+        }
+
+        &:nth-of-type(3) {
+          background: linear-gradient(-45deg, fade(#e5de15, 50%), fade(#000, 0));
+          background: none;
+          bottom: 0;
+          right: 0;
+
+          b {
+            bottom: -@chartSquarUnit / 2;
+            right: -@chartSquarUnit / 2;
+            background: linear-gradient(-235deg, lighten(#e5de15, 20%), #e5de15, darken(#e5de15, 20%));
+          }
+
+          span {
+            text-align: right;
+            bottom: -@chartSquarUnit / 2;
+            left: ~"calc(100% + @{chartSquarUnit})";
+          }
+        }
+
+        &:nth-of-type(4) {
+          background: linear-gradient(45deg, fade(#ff700b, 50%), fade(#000, 0));
+          background: none;
+          bottom: 0;
+          left: 0;
+
+          b {
+            bottom: -@chartSquarUnit / 2;
+            left: -@chartSquarUnit / 2;
+            background: linear-gradient(-235deg, lighten(#ff700b, 20%), #ff700b, darken(#ff700b, 20%));
+          }
+
+          span {
+            text-align: right;
+            bottom: -@chartSquarUnit / 2;
+            right: ~"calc(100% + @{chartSquarUnit})";
+          }
+        }
+      } 
+    }
+  }
+
+  dd {
+    display: none;
+  }
+
+  dt {
+    position: absolute;
+  }
+}
