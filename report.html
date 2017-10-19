@@ -1,95 +1,106 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>Veerify - Powered by Expeerify</title>
-<link rel="stylesheet/less" href="assets/report.less" />
-<link rel="stylesheet/less" href="assets/chart4d.less" />
-<link rel="stylesheet/less" href="assets/lnr.css" />
-<script src="jslib/jquery-2.1.4.min.js" type="text/javascript"></script>
-<script src="jslib/jsrender.min.js" type="text/javascript"></script>
-<script src="jslib/less-1.4.1.min.js"></script>
+    <meta charset="utf-8">
+    <title>Veerify - Powered by Expeerify</title>
+    <link rel="stylesheet/less" href="assets/report.less" />
+    <link rel="stylesheet/less" href="assets/chart4d.less" />
+    <link rel="stylesheet/less" href="assets/lnr.css" />
+    <script src="jslib/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="jslib/jsrender.min.js" type="text/javascript"></script>
+    <script src="jslib/less-1.4.1.min.js"></script>
+    <script src="controllers/report.js"></script>
 </head>
+
 <body class="Veerify">
-	<main>
-	<nav>
-		<h1>
-			<img src="assets/veerify.png" alt="Veerify" />
-		</h1>
-		<img src="assets/ivan.png" alt="Ivan Vladimirov" />
-		<div role="toolbar" aria-label="Main actions">
-			<div role="group">
-				<button class="lnr lnr-cog">
-					<span>Settings</span>
-				</button>
-			</div>
-			<div role="group">
-				<button class="lnr lnr-question-circle">
-					<span>Help</span>
-				</button>
-				<button class="lnr lnr-exit">
-					<span>Sign out</span>
-				</button>
-			</div>
-		</div>
-	</nav>
-	<section aria-label="Result summary">
-		<h1>Island Scenario</h1>
-		<p>Leadershop profile report result</p>
-		<h2>Cultivating</h2>
-		<dl>
-			<dt>Human need</dt>
-			<dd>To feel appriciated.</dd>
-			<dt>Social context</dt>
-			<dd>Mutual respect, enjoyable work, willing engagement and
-				collaboration.</dd>
-			<dt>Achieved by</dt>
-			<dd>Expressing authentic appreciation and addressing shared
-				interests.</dd>
-		</dl>
-		<button class="lnr lnr-download">
-			<span>Download PDF</span>
-		</button>
-		<button class="lnr lnr-printer">
-			<span>Print</span>
-		</button>
-	</section>
-	<section aria-label="Result chart">
-		<div class="Chart-4D">
-			<input type="text" value="10, 9" readonly />
-			<h3>Axises</h3>
-			<dl class="axises">
-				<dt class="axis-intuited">Intuited</dt>
-				<dd>10</dd>
-				<dt class="axis-logical">Logical</dt>
-				<dd>1</dd>
-				<dt class="axis-sensed">Sensed</dt>
-				<dd>3</dd>
-				<dt class="axis-emotional">Emotional</dt>
-				<dd>9</dd>
-			</dl>
-			<h3>Quadrants</h3>
-			<dl class="quadrants">
-				<dt class="quadrant-cultivating">
-					<b>green, </b><span>Cultivating</span>
-				</dt>
-				<dd>10, 9</dd>
-				<dt class="quadrant-visioning">
-					<b>blue, </b><span>Visioning</span>
-				</dt>
-				<dd>0</dd>
-				<dt class="quadrant-directing">
-					<b>orange, </b><span>Directing</span>
-				</dt>
-				<dd>0</dd>
-				<dt class="quadrant-including">
-					<b>yellow, </b><span>Including</span>
-				</dt>
-				<dd>0</dd>
-			</dl>
-		</div>
-	</section>
-	</main>
-	<footer>Powered by Expeerify &copy;</footer>
+    <main>
+        <nav>
+            <h1>
+                <img src="assets/veerify.png" alt="Veerify" /> </h1>
+            <img src="assets/ivan.png" alt="Ivan Vladimirov" />
+            <div role="toolbar" aria-label="Main actions">
+                <div role="group">
+                    <button class="lnr lnr-cog">
+                        <span>Settings</span>
+                    </button>
+                </div>
+                <div role="group">
+                    <button class="lnr lnr-question-circle">
+                        <span>Help</span>
+                    </button>
+                    <button class="lnr lnr-exit">
+                        <span>Sign out</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <section aria-label="Result summary">
+            <h1>Island Scenario</h1>
+            <p>Leadershop profile report result</p>
+            <h2>Cultivating</h2>
+            <dl>
+                <dt>Human need</dt>
+                <dd>To feel appriciated.</dd>
+                <dt>Social context</dt>
+                <dd>Mutual respect, enjoyable work, willing engagement and collaboration.
+                </dd>
+                <dt>Achieved by</dt>
+                <dd>Expressing authentic appreciation and addressing shared interests.
+                </dd>
+            </dl>
+            <button class="lnr lnr-download">
+                <span>Download PDF</span>
+            </button>
+            <button class="lnr lnr-printer">
+                <span>Print</span>
+            </button>
+        </section>
+        <section aria-label="Result chart">
+            <div class="Chart-4D">
+                <input type="text" value="10, 9" readonly />
+                <h3>Axises</h3>
+                <dl class="axises">
+                    <dt class="axis-intuited">Intuited</dt>
+                    <dd>10</dd>
+                    <dt class="axis-logical">Emotional</dt>
+                    <dd>1</dd>
+                    <dt class="axis-sensed">Sensed</dt>
+                    <dd>3</dd>
+                    <dt class="axis-emotional">Logical</dt>
+                    <dd>9</dd>
+                </dl>
+                <h3>Quadrants</h3>
+                <dl class="quadrants">
+                    <dt class="quadrant-cultivating">
+                        <b>green, </b>
+                        <span>Cultivating</span>
+                        <div role="presentation"></div>
+                    </dt>
+                    <dd>10, 9</dd>
+                    <dt class="quadrant-visioning">
+                        <b>blue, </b>
+                        <span>Visioning</span>
+                        <div role="presentation"></div>
+                    </dt>
+                    <dd>0</dd>
+                    <dt class="quadrant-directing">
+                        <b>orange, </b>
+                        <span>Directing</span>
+                        <div role="presentation"></div>
+                    </dt>
+                    <dd>0</dd>
+                    <dt class="quadrant-including">
+                        <b>yellow, </b>
+                        <span>Including</span>
+                        <div role="presentation"></div>
+                    </dt>
+                    <dd>0</dd>
+                </dl>
+            </div>
+        </section>
+    </main>
+    <footer>Powered by Expeerify &copy;</footer>
 </body>
+
 </html>

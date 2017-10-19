@@ -2,16 +2,17 @@
 
 function analyzeIslandReportData($link, $data, $recordId, $logId)
 {
-    switch ($data['targetDisplayName']) {
+    switch ($data['targetGroupName']) {
         
         /**
-         * Scene 1
+         * First choice between several of a group.
          */
         
-        case 'map':
-        case 'friends':
+        case 'mapAndFriendsChoice':
+        case 'pathChoice':
             $sql = "SELECT * FROM records_log
                     WHERE record_id = $recordId
+                    AND target_group_name = '{$data['targetGroupName']}'
                     ORDER BY interaction_end_time
                     LIMIT 1;";
             
@@ -23,17 +24,45 @@ function analyzeIslandReportData($link, $data, $recordId, $logId)
             }
             
             switch ($record['target_display_name']) {
+                
+                /**
+                 * Scene 1
+                 */
+                
                 case 'map':
                     $sql = "INSERT INTO records_result (record_id, logical)
                             VALUES ({$record['record_id']}, 1)
                             ON DUPLICATE KEY UPDATE logical = logical + 1;";
                     
                     break;
+                
                 case 'friends':
                     $sql = "INSERT INTO records_result (record_id, emotional)
                             VALUES ({$record['record_id']}, 1)
                             ON DUPLICATE KEY UPDATE emotional = emotional + 1;";
                     
+                    break;
+                
+                /**
+                 * Scene 2
+                 */
+                
+                case 'darkPathEnd':
+                    $sql = "INSERT INTO records_result (record_id, logical)
+                            VALUES ({$record['record_id']}, 1)
+                            ON DUPLICATE KEY UPDATE logical = logical + 1;";
+                    
+                    break;
+                
+                case 'sunnyPathEnd':
+                    $sql = "INSERT INTO records_result (record_id, emotional)
+                            VALUES ({$record['record_id']}, 1)
+                            ON DUPLICATE KEY UPDATE emotional = emotional + 1;";
+                    
+                    break;
+                
+                default:
+                    return false;
                     break;
             }
             
@@ -46,15 +75,6 @@ function analyzeIslandReportData($link, $data, $recordId, $logId)
             $result = mysqli_query($link, $sql);
             
             return true;
-            
-            break;
-        
-        /**
-         * Scene 2
-         */
-        
-        case 'dark':
-        case 'light':
             break;
     }
 }

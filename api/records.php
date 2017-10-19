@@ -9,8 +9,12 @@ $db = 'expeerify';
 $link = mysqli_connect($host, $id, $password, $db);
 
 if (getenv('REQUEST_METHOD') == 'GET') {
-    if (isset($_GET['id'])) {
+    if (isset($_GET['record'])) {
         $sql = "SELECT * FROM records
+                ORDER BY record_id DESC
+                LIMIT 1;";
+    } else if (isset($_GET['result'])) {
+        $sql = "SELECT * FROM records_result
                 ORDER BY record_id DESC
                 LIMIT 1;";
     } else {
