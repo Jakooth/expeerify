@@ -25,7 +25,7 @@ if (getenv('REQUEST_METHOD') == 'GET') {
     }
     
     echo json_encode(array(
-        'response' => $results
+            'response' => $results
     ));
     
     exit();
@@ -37,7 +37,7 @@ if (getenv('REQUEST_METHOD') == 'POST') {
     
     $resultId = isset($requestData['resultId']) ? $requestData['resultId'] > 0 ? $requestData['resultId'] : false : false;
     $endTime = isset($requestData['endTime']) ? $requestData['endTime'] ==
-    'Jan 1, 1, 12:00:00 AM' ? "null" : "'{$requestData ['endTime']}'" : "null";
+             'Jan 1, 1, 12:00:00 AM' ? "null" : "'{$requestData ['endTime']}'" : "null";
     
     if (isset($requestData)) {
         if ($resultId) {
@@ -68,9 +68,9 @@ if (getenv('REQUEST_METHOD') == 'POST') {
         $response = mysqli_fetch_assoc($result);
         
         echo json_encode(
-            array(
-                'response' => $response
-            ));
+                array(
+                        'response' => $response
+                ));
         
         exit();
     } else {
@@ -79,9 +79,9 @@ if (getenv('REQUEST_METHOD') == 'POST') {
         $response['message'] = 'Unauthorized.';
         
         echo json_encode(
-            array(
-                'response' => $response
-            ));
+                array(
+                        'response' => $response
+                ));
         
         exit();
     }

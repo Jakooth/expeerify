@@ -13,14 +13,15 @@ if (getenv('REQUEST_METHOD') == 'GET') {
         $sql = "SELECT * FROM records
                 ORDER BY record_id DESC
                 LIMIT 1;";
-    } else if (isset($_GET['result'])) {
-        $sql = "SELECT * FROM records_result
+    } else 
+        if (isset($_GET['result'])) {
+            $sql = "SELECT * FROM records_result
                 ORDER BY record_id DESC
                 LIMIT 1;";
-    } else {
-        $sql = "SELECT * FROM records
+        } else {
+            $sql = "SELECT * FROM records
                 ORDER BY record_id DESC;";
-    }
+        }
     
     $query = mysqli_query($link, $sql);
     
@@ -31,7 +32,7 @@ if (getenv('REQUEST_METHOD') == 'GET') {
     }
     
     echo json_encode(array(
-        'response' => $results
+            'response' => $results
     ));
     
     exit();
@@ -42,8 +43,10 @@ if (getenv('REQUEST_METHOD') == 'POST') {
     $requestData = json_decode($request, true);
     
     $recordId = isset($requestData['recordId']) ? $requestData['recordId'] > 0 ? $requestData['recordId'] : false : false;
-    $startTime = DateTime::createFromFormat('M m, Y, H:i:s A', $requestData['interactionStartTime'])->format('Y-m-d H:i:s');
-    $endTime = DateTime::createFromFormat('M m, Y, H:i:s A', $requestData['interactionEndTime'])->format('Y-m-d H:i:s');
+    $startTime = DateTime::createFromFormat('M m, Y, H:i:s A',
+            $requestData['interactionStartTime'])->format('Y-m-d H:i:s');
+    $endTime = DateTime::createFromFormat('M m, Y, H:i:s A',
+            $requestData['interactionEndTime'])->format('Y-m-d H:i:s');
     
     if (isset($requestData)) {
         if ($recordId) {
@@ -83,10 +86,11 @@ if (getenv('REQUEST_METHOD') == 'POST') {
         $result = mysqli_query($link, $sql);
         $response = mysqli_fetch_assoc($result);
         
-        $isAnalyzed = analyzeIslandReportData($link, $requestData, $last_record, $last_log);
+        $isAnalyzed = analyzeIslandReportData($link, $requestData, $last_record,
+                $last_log);
         
         echo json_encode(array(
-            'response' => $response
+                'response' => $response
         ));
         
         exit();
@@ -96,7 +100,7 @@ if (getenv('REQUEST_METHOD') == 'POST') {
         $response['message'] = 'Unauthorized.';
         
         echo json_encode(array(
-            'response' => $response
+                'response' => $response
         ));
         
         exit();
