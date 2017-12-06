@@ -6,10 +6,10 @@ function analyzeIslandReportData ($link, $data, $recordId, $logId)
     /**
      * Selected specific one from a group.
      */
-    if ($data['targetGroupName'] == 'tothemChoice') {
+    if ($data['targetGroupName'] == 'totemChoice') {
         
         switch ($data['targetDisplayName']) {
-            case 'tothem':
+            case 'totem':
                 if ($data['interactionValue'] == 'math') {
                     $sql = "INSERT INTO records_result (record_id, sensed)
                             VALUES ($recordId, 1)
@@ -48,9 +48,9 @@ function analyzeIslandReportData ($link, $data, $recordId, $logId)
             }
             
             $sql = "SELECT * FROM records_log
-                WHERE record_id = $recordId
-                AND target_group_name = '{$data['targetGroupName']}'
-                ORDER BY interaction_end_time;";
+                    WHERE record_id = $recordId
+                    AND target_group_name = '{$data['targetGroupName']}'
+                    ORDER BY interaction_end_time;";
             
             $result = mysqli_query($link, $sql);
             $records = mysqli_num_rows($result);
@@ -67,14 +67,14 @@ function analyzeIslandReportData ($link, $data, $recordId, $logId)
                 case 'monkey':
                     if ($records === 3) {
                         $sql = "INSERT INTO records_result (record_id, sensed)
-                            VALUES ($recordId, 1)
-                            ON DUPLICATE KEY UPDATE sensed = sensed + 1,
-                                                    intuited = intuited - 1;";
+                                VALUES ($recordId, 1)
+                                ON DUPLICATE KEY UPDATE sensed = sensed + 1,
+                                                        intuited = intuited - 1;";
                     } else 
                         if ($records === 1) {
                             $sql = "INSERT INTO records_result (record_id, intuited)
-                                VALUES ($recordId, 1)
-                                ON DUPLICATE KEY UPDATE intuited = intuited + 1;";
+                                    VALUES ($recordId, 1)
+                                    ON DUPLICATE KEY UPDATE intuited = intuited + 1;";
                         }
                     
                     break;
@@ -87,28 +87,28 @@ function analyzeIslandReportData ($link, $data, $recordId, $logId)
                 case 'magnifier':
                     if ($records === 2) {
                         $sql = "INSERT INTO records_result (record_id, sensed)
-                            VALUES ($recordId, 1)
-                            ON DUPLICATE KEY UPDATE sensed = sensed + 1, 
-                                                    intuited = intuited - 1;";
+                                VALUES ($recordId, 1)
+                                ON DUPLICATE KEY UPDATE sensed = sensed + 1, 
+                                                        intuited = intuited - 1;";
                     } else 
                         if ($records === 1) {
                             $sql = "INSERT INTO records_result (record_id, intuited)
-                                VALUES ($recordId, 1)
-                                ON DUPLICATE KEY UPDATE intuited = intuited + 1;";
+                                    VALUES ($recordId, 1)
+                                    ON DUPLICATE KEY UPDATE intuited = intuited + 1;";
                         }
                     
                     break;
                 case 'scroll':
                     if ($records === 4) {
                         $sql = "INSERT INTO records_result (record_id, sensed)
-                            VALUES ($recordId, 1)
-                            ON DUPLICATE KEY UPDATE sensed = sensed + 1,
-                                                    intuited = intuited - 1;";
+                                VALUES ($recordId, 1)
+                                ON DUPLICATE KEY UPDATE sensed = sensed + 1,
+                                                        intuited = intuited - 1;";
                     } else 
                         if ($records === 1) {
                             $sql = "INSERT INTO records_result (record_id, intuited)
-                                VALUES ($recordId, 1)
-                                ON DUPLICATE KEY UPDATE intuited = intuited + 1;";
+                                    VALUES ($recordId, 1)
+                                    ON DUPLICATE KEY UPDATE intuited = intuited + 1;";
                         }
                     
                     break;
@@ -121,8 +121,8 @@ function analyzeIslandReportData ($link, $data, $recordId, $logId)
             $result = mysqli_query($link, $sql);
             
             $sql = "UPDATE records_log
-                SET analyzed = 1
-                WHERE record_log_id = $logId;";
+                    SET analyzed = 1
+                    WHERE record_log_id = $logId;";
             
             $result = mysqli_query($link, $sql);
         } while (0);
@@ -161,8 +161,8 @@ function analyzeIslandReportData ($link, $data, $recordId, $logId)
                     }
                     
                     $sql = "INSERT INTO records_result (record_id, emotional, intuited)
-                        VALUES ($recordId, 1, 1)
-                        ON DUPLICATE KEY UPDATE emotional = emotional + 1, intuited = intuited + 1;";
+                            VALUES ($recordId, 1, 1)
+                            ON DUPLICATE KEY UPDATE emotional = emotional + 1, intuited = intuited + 1;";
                     
                     break;
                 
@@ -172,8 +172,8 @@ function analyzeIslandReportData ($link, $data, $recordId, $logId)
                     }
                     
                     $sql = "INSERT INTO records_result (record_id, logical, intuited)
-                        VALUES ($recordId, 1, 1)
-                        ON DUPLICATE KEY UPDATE logical = logical + 1, intuited = intuited + 1;";
+                            VALUES ($recordId, 1, 1)
+                            ON DUPLICATE KEY UPDATE logical = logical + 1, intuited = intuited + 1;";
                     
                     break;
                 
@@ -183,8 +183,8 @@ function analyzeIslandReportData ($link, $data, $recordId, $logId)
                     }
                     
                     $sql = "INSERT INTO records_result (record_id, logical, sensed)
-                        VALUES ($recordId, 1, 1)
-                        ON DUPLICATE KEY UPDATE logical = logical + 1, sensed = sensed + 1;";
+                            VALUES ($recordId, 1, 1)
+                            ON DUPLICATE KEY UPDATE logical = logical + 1, sensed = sensed + 1;";
                     
                     break;
                 
@@ -194,8 +194,8 @@ function analyzeIslandReportData ($link, $data, $recordId, $logId)
                     }
                     
                     $sql = "INSERT INTO records_result (record_id, emotional, sensed)
-                        VALUES ($recordId, 1, 1)
-                        ON DUPLICATE KEY UPDATE emotional = emotional + 1, sensed = sensed + 1;";
+                            VALUES ($recordId, 1, 1)
+                            ON DUPLICATE KEY UPDATE emotional = emotional + 1, sensed = sensed + 1;";
                     
                     break;
                 
@@ -207,8 +207,8 @@ function analyzeIslandReportData ($link, $data, $recordId, $logId)
             $result = mysqli_query($link, $sql);
             
             $sql = "UPDATE records_log
-                SET analyzed = 1
-                WHERE record_log_id = $logId;";
+                    SET analyzed = 1
+                    WHERE record_log_id = $logId;";
             
             $result = mysqli_query($link, $sql);
         } while (0);
@@ -247,15 +247,15 @@ function analyzeIslandReportData ($link, $data, $recordId, $logId)
                 
                 case 'map':
                     $sql = "INSERT INTO records_result (record_id, logical)
-                        VALUES ($recordId, 1)
-                        ON DUPLICATE KEY UPDATE logical = logical + 1;";
+                            VALUES ($recordId, 1)
+                            ON DUPLICATE KEY UPDATE logical = logical + 1;";
                     
                     break;
                 
                 case 'friends':
                     $sql = "INSERT INTO records_result (record_id, emotional)
-                        VALUES ($recordId, 1)
-                        ON DUPLICATE KEY UPDATE emotional = emotional + 1;";
+                            VALUES ($recordId, 1)
+                            ON DUPLICATE KEY UPDATE emotional = emotional + 1;";
                     
                     break;
                 
@@ -265,15 +265,15 @@ function analyzeIslandReportData ($link, $data, $recordId, $logId)
                 
                 case 'darkPathEnd':
                     $sql = "INSERT INTO records_result (record_id, logical)
-                        VALUES ({$record['record_id']}, 1)
-                        ON DUPLICATE KEY UPDATE logical = logical + 1;";
+                            VALUES ({$record['record_id']}, 1)
+                            ON DUPLICATE KEY UPDATE logical = logical + 1;";
                     
                     break;
                 
                 case 'sunnyPathEnd':
                     $sql = "INSERT INTO records_result (record_id, emotional)
-                        VALUES ({$record['record_id']}, 1)
-                        ON DUPLICATE KEY UPDATE emotional = emotional + 1;";
+                            VALUES ({$record['record_id']}, 1)
+                            ON DUPLICATE KEY UPDATE emotional = emotional + 1;";
                     
                     break;
                 
@@ -283,15 +283,15 @@ function analyzeIslandReportData ($link, $data, $recordId, $logId)
                 
                 case 'book':
                     $sql = "INSERT INTO records_result (record_id, sensed)
-                        VALUES ({$record['record_id']}, 1)
-                        ON DUPLICATE KEY UPDATE logical = sensed + 1;";
+                            VALUES ({$record['record_id']}, 1)
+                            ON DUPLICATE KEY UPDATE logical = sensed + 1;";
                     
                     break;
                 
                 case 'flower':
                     $sql = "INSERT INTO records_result (record_id, intuited)
-                        VALUES ({$record['record_id']}, 1)
-                        ON DUPLICATE KEY UPDATE emotional = intuited + 1;";
+                            VALUES ({$record['record_id']}, 1)
+                            ON DUPLICATE KEY UPDATE emotional = intuited + 1;";
                     
                     break;
                 
@@ -301,15 +301,15 @@ function analyzeIslandReportData ($link, $data, $recordId, $logId)
                 
                 case 'key':
                     $sql = "INSERT INTO records_result (record_id, sensed)
-                        VALUES ({$record['record_id']}, 1)
-                        ON DUPLICATE KEY UPDATE logical = sensed + 1;";
+                            VALUES ({$record['record_id']}, 1)
+                            ON DUPLICATE KEY UPDATE logical = sensed + 1;";
                     
                     break;
                 
                 case 'magicKey':
                     $sql = "INSERT INTO records_result (record_id, intuited)
-                        VALUES ({$record['record_id']}, 1)
-                        ON DUPLICATE KEY UPDATE emotional = intuited + 1;";
+                            VALUES ({$record['record_id']}, 1)
+                            ON DUPLICATE KEY UPDATE emotional = intuited + 1;";
                     
                     break;
                 
@@ -319,15 +319,15 @@ function analyzeIslandReportData ($link, $data, $recordId, $logId)
                 
                 case 'boat':
                     $sql = "INSERT INTO records_result (record_id, logical)
-                        VALUES ({$record['record_id']}, 1)
-                        ON DUPLICATE KEY UPDATE logical = logical + 1;";
+                            VALUES ({$record['record_id']}, 1)
+                            ON DUPLICATE KEY UPDATE logical = logical + 1;";
                     
                     break;
                 
                 case 'party':
                     $sql = "INSERT INTO records_result (record_id, emotional)
-                        VALUES ({$record['record_id']}, 1)
-                        ON DUPLICATE KEY UPDATE emotional = emotional + 1;";
+                            VALUES ({$record['record_id']}, 1)
+                            ON DUPLICATE KEY UPDATE emotional = emotional + 1;";
                     
                     break;
                 
@@ -339,8 +339,8 @@ function analyzeIslandReportData ($link, $data, $recordId, $logId)
             $result = mysqli_query($link, $sql);
             
             $sql = "UPDATE records_log
-                SET analyzed = 1
-                WHERE record_log_id = $logId;";
+                    SET analyzed = 1
+                    WHERE record_log_id = $logId;";
             
             $result = mysqli_query($link, $sql);
         } while (0);
