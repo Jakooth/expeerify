@@ -10,6 +10,14 @@ body {
   height: 100%;
   margin: 0;
   background: radial-gradient(circle, #955887, #493D5D);
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  flex: 1 0 auto;
+  pointer-events: relative;
+  z-index: 2;
   color: white;
   font-family: 'Open Sans', sans-serif;
   font-size: 12pt;
@@ -24,14 +32,6 @@ body {
     z-index: 1;
     opacity: 0.1;
   }
-}
-
-main {
-  display: flex;
-  flex-direction: row;
-  flex: 1 0 auto;
-  pointer-events: relative;
-  z-index: 2;
 
   [role=toolbar] {
     padding: 20px;
