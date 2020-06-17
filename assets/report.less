@@ -106,6 +106,7 @@ main {
     width: 10%;
     min-width: 180px;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
 
     h1 {
       padding-bottom: 20px;
@@ -127,6 +128,10 @@ main {
       display: flex;
       flex-direction: column;
     }
+  }
+
+  section {
+    z-index: 2;
   }
 
   section:nth-of-type(1) {
@@ -195,4 +200,7 @@ footer {
   right: 0;
   padding: 20px;
   z-index: 2;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12pt;
 }
