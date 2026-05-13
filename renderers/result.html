@@ -1,0 +1,28 @@
+{{for #data}}
+<li class="Result" aria-busy="{{:#data.end ? false : true}}">
+	<h2>Резултат</h2>
+	<dl>
+		<dt>Потребител</dt>
+		<dd>Потребител {{:#data.user_id}}</dd>
+		<dt>Действия</dt>
+		<dd>
+			<p
+				aria-hidden="{{:#data.tried_open_without_key == -1 ? true : false}}">
+				<b
+					aria-hidden="{{:#data.tried_open_without_key == 0 ? true : false}}">Пробва</b><i
+					aria-hidden="{{:#data.tried_open_without_key == 1 ? true : false}}">Не
+					пробва</i> дали вратата е отключена.
+			</p>
+			<p aria-hidden="{{:#data.is_light_turned_on == -1 ? true : false}}">
+				<b aria-hidden="{{:#data.is_light_turned_on == 0 ? true : false}}">Включи</b><i
+					aria-hidden="{{:#data.is_light_turned_on == 1 ? true : false}}">Не
+					включи</i> лампата преди да отвори вратата.
+			</p>
+		</dd>
+		<dt>Начало</dt>
+		<dd>{{:#data.start}}</dd>
+		<dt>Край</dt>
+		<dd>{{:#data.end}}</dd>
+	</dl>
+</li>
+{{/for}}
